@@ -1,0 +1,31 @@
+#!/usr/bin/env bash -e
+
+if [ -z "$NPMSERVE_DEPLOY_HOST" ]; then
+  echo 'please specify NPMSERVE_DEPLOY_HOST'
+  echo 'DEPLOYMENT FAILED'
+  exit 1;
+fi
+
+echo "deploying to host: $NPMSERVE_DEPLOY_HOST"
+
+if [ -d ../npmserve-server/data ]; then
+  rm -r ../npmserve-server/data
+  mkdir ../npmserve-server/data
+fi
+
+echo 'copying files'
+rsync -a --delete . $NPMSERVE_DEPLOY_HOST:~/npmserve-server
+
+echo 'install node modules'
+ssh -t $NPMSERVE_DEPLOY_HOST "([ -d ~/npmserve-server/node_modules ] && rm -r ~/npmserve-server/node_modules) || true"
+ssh -t $NPMSERVE_DEPLOY_HOST "cd ~/npmserve-server && npm install --production"
+
+echo 'start server'
+ssh -t $NPMSERVE_DEPLOY_HOST "killall node || true"
+ssh -n -f $NPMSERVE_DEPLOY_HOST "sh -c 'cd ~/npmserve-server; nohup ./bin/production > ~/npmserve-server.log 2>&1 &'"
+
+echo 'cat log'
+sleep 1;
+ssh -t $NPMSERVE_DEPLOY_HOST "cat ~/npmserve-server.log"
+
+echo 'DEPLOYMENT SUCCESSFUL'

@@ -1,0 +1,28 @@
+extends layout
+
+block content
+
+  script(src='/javascripts/builds.js')
+
+  div.builds
+
+    h2 builds
+
+    table
+      th.left name
+      th version
+      th hash
+      th
+      th
+      th
+      each build in builds
+        tr.build-row(hash="#{build.hash}")
+          td.left #{build.name}
+          td #{build.version}
+          td #{build.hash}
+          td
+            div(class='build-message' hash="#{build.hash}")
+          td
+            div(class='build-spinner' hash="#{build.hash}")
+          td.right
+            a(href="#" hash="#{build.hash}" class="build-delete") delete

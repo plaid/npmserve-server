@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+SERVER_ROOT_DIR="$( cd "$( dirname "$( dirname "${BASH_SOURCE[0]}" )" )" && pwd )"
+
+export BUILD_DATA_DIR="$SERVER_ROOT_DIR/data"
+export PORT=3000
+
+./bin/www
