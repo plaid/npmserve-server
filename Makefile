@@ -6,6 +6,7 @@ XYZ = node_modules/.bin/xyz --branch master --repo git@github.com:plaid/npmserve
 
 SRC = $(shell find . -name '*.js' -not -path './node_modules/*' -not -path './data/*')
 TEST_SRC = $(shell find test -name '*.js')
+ETE_TEST_SRC = $(shell find endtoend -name '*.js')
 
 .PHONY: lint
 lint:
@@ -26,3 +27,8 @@ setup:
 .PHONY: test
 test:
 	$(MOCHA) --timeout 120000 -- $(TEST_SRC)
+
+
+.PHONY: test-endtoend
+test-endtoend:
+	$(MOCHA) --timeout 120000 -- $(ETE_TEST_SRC)
