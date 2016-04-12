@@ -38,7 +38,7 @@ actions via the API as well. These are documented below.
 `POST /npm/install`
 * **behavior**: performs an `npm install` on the server
 * **arguments**: `packageJson`: string of `package.json` file contents
-* **conent-type**: `application/x-www-form-urlencoded; charset=utf-8`
+* **content-type**: `application/x-www-form-urlencoded; charset=utf-8`
 * **response**: compressed archive `node_modules.tar.gz`, containing `node_modules`
 
 `DELETE /npm/install/:hash`
