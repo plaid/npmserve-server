@@ -17,18 +17,18 @@ This allows virtual machines and other slow clients to offload the work of build
 
 ## implementation
 
-To solve these problems, we provide a server on which clients can execute their
-npm installs by uploading a `package.json` file. In response, they receive a
+To solve these problems, we are providing a server on which clients can execute their
+npm installs by uploading a `package.json` file. In response, they will receive a
 `node_modules.tar.gz` archive containing their install results.
 
 ## limitations
 
-1. Presently the server must be run on a machine of the same architecture as the clients. If this is not the case, calls to `/npm/install` may return `node_modules` archives containing extensions compiled for the wrong architecture to the client.
+Currently, the server must be run on a machine with the same architecture as the clients. If this is not the case, calls to `/npm/install` may return `node_modules` archives containing extensions compiled for the wrong architecture.
 
 ## build semantics
 
 To the extent possible, the `npmserve` server provides operations analogous to
-those which a user running `npm` locally might do. Users running locally often
+those that a user running `npm` locally might do. Users running locally often
 resort to forceful actions such as deleting their entire `node_modules`
 directory or clearing their cache. We provide the facility to perform those
 actions via the API as well. These are documented below.
