@@ -2,3 +2,5 @@ node_modules
 node_modules.tar.gz
 data
 npm-debug.log
+bin/server
+scripts/tail-server

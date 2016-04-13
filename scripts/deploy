@@ -22,7 +22,7 @@ ssh -t $NPMSERVE_DEPLOY_HOST "cd ~/npmserve-server && npm install --production"
 
 echo 'start server'
 ssh -t $NPMSERVE_DEPLOY_HOST "killall node || true"
-ssh -n -f $NPMSERVE_DEPLOY_HOST "sh -c 'cd ~/npmserve-server; nohup ./bin/production > ~/npmserve-server.log 2>&1 &'"
+ssh -n -f $NPMSERVE_DEPLOY_HOST "sh -c 'cd ~/npmserve-server; nohup ./bin/server > ~/npmserve-server.log 2>&1 &'"
 
 echo 'cat log'
 sleep 1;
