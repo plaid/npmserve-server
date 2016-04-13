@@ -2,5 +2,3 @@ node_modules
 node_modules.tar.gz
 data
 npm-debug.log
-bin/production
-scripts/tail-production
