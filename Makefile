@@ -1,8 +1,9 @@
 JSCS = node_modules/.bin/jscs
 JSHINT = node_modules/.bin/jshint
-NPM = npm
 MOCHA = node_modules/.bin/mocha --harmony
-XYZ = node_modules/.bin/xyz --branch master --repo git@github.com:plaid/npmserve-server.git
+NPM_ENV_VARS = npm_config_registry=https://registry.npmjs.org/
+NPM = $(NPM_ENV_VARS) npm
+XYZ = $(NPM_ENV_VARS) node_modules/.bin/xyz --branch master --repo git@github.com:plaid/npmserve-server.git
 
 SRC = $(shell find . -name '*.js' -not -path './node_modules/*' -not -path './data/*')
 TEST_SRC = $(shell find test -name '*.js')

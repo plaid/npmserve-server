@@ -1,5 +1,7 @@
 # npmserve-server
 
+[![npm](https://img.shields.io/npm/v/npmserve-server.svg?maxAge=2592000)]()
+
 This server provides `npm` as a service accessible via http endpoints.
 This allows virtual machines and other slow clients to offload the work of building `node_modules` and thus perform significantly faster installs.
 
