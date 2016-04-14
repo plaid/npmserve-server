@@ -8,6 +8,11 @@ const mkdirp = (path) => {
   return childProcessPromise.spawn('mkdir', ['-p', path]);
 };
 
+const rmrf = (path) => {
+  return childProcessPromise.spawn('rm', ['-rf', path]);
+};
+
 module.exports = {
-  mkdirp: mkdirp
+  mkdirp: mkdirp,
+  rmrf: rmrf
 };
