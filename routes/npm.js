@@ -6,7 +6,6 @@ const crypto = require('crypto');
 const express = require('express');
 const lockfile = require('lockfile');
 const R = require('ramda');
-const rimraf = require('rimraf');
 const childProcessPromise = require('child-process-promise');
 
 const env = require('../env');
@@ -17,8 +16,6 @@ const nodePackage = require('../util/node-package');
 
 P.promisifyAll(fs);
 P.promisifyAll(lockfile);
-
-const rmRfPromise = P.promisify(rimraf);
 
 const router = express.Router();
 const logger = console;
@@ -80,7 +77,7 @@ router.delete('/install/:hash', (req, res, next) => {
         return lockfile.lockAsync($lockFile);
       })
       .then(() => {
-        return rmRfPromise(buildDir);
+        return fsUtils.rmrf(buildDir);
       });
     } else {
       return P.resolve();
@@ -146,6 +143,14 @@ router.post('/install', (req, res, next) => {
         return P.resolve();
       } else {
         return P.resolve()
+        .then(() => {
+          //
+          // initialize a node_modules directory first in case there are no
+          // dependencies in the package.json. This ensures that we can create
+          // the archive with `tar`
+          //
+          return fsUtils.mkdirp(path.join(buildDir, 'node_modules'));
+        })
         .then(() => {
           logger.info('execute npm install', $buildOpts);
           return spawnWrapper('npm', ['install', '--no-shrinkwrap'], {

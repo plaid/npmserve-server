@@ -23,7 +23,6 @@
     "morgan": "1.6.1",
     "ramda": "0.19.1",
     "request": "2.70.0",
-    "rimraf": "2.5.2",
     "serve-favicon": "2.3.0"
   },
   "devDependencies": {

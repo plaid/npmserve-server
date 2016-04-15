@@ -8,4 +8,10 @@
     in place using `git rebase` or `git commit --amend` to make the changes
     easier to review.
 
-3.  Open a pull request.
+3.  Run the end-to-end server tests and make sure they pass.
+
+    ```
+    make test-endtoend
+    ```
+
+4.  Open a pull request.
