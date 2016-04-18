@@ -29,6 +29,13 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+
+/*
+ * Set the server timeout.
+ */
+
+server.setTimeout(10 * 60 * 1000);
+
 /**
  * Normalize a port into a number, string, or false.
  */
