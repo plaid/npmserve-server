@@ -1,6 +1,6 @@
 {
   "name": "npmserve-server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "license": "MIT",
   "author": "Ryan Buckheit <ryan@plaid.com>",
   "scripts": {
